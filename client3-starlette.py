@@ -43,7 +43,7 @@ class TestHTTPSConnectionPool(HTTPSConnectionPool):
 
 # print('certifi :  ', certifi.where())
 
-port = 9000
+port = 8080
 if len(sys.argv) == 2:
     port = int(sys.argv[-1])
     print(port)
@@ -52,7 +52,7 @@ ca_certs = 'new/new-cacert.pem'
 
 pool = TestHTTPSConnectionPool(
     'cod-avatar.com',
-    port,
+    8000,
     cert_reqs='CERT_REQUIRED',
     ca_certs=ca_certs
 )
@@ -68,11 +68,10 @@ _ = input('\n\nPress Enter to go through proxy')
 
 pool_with_proxy = TestHTTPSConnectionPool(
     'cod-avatar.com',
-    port=port,
+    port=8000,
     cert_reqs='CERT_REQUIRED',
     ca_certs=ca_certs,
-    _proxy=ProxyManager('https://127.0.0.1:8080').proxy,
-    
+    _proxy=ProxyManager('https://127.0.0.1:'+str(port)).proxy,
 )
 
 # import ipdb;ipdb.set_trace()

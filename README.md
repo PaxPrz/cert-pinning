@@ -17,3 +17,16 @@ Uses context from ssl module to verify the certificate
 ### client2
 
 Computes hash of certificate information and check if the certificate is valid or not
+
+### client3
+
+Start the starlette server using gunicorn. Command below:
+
+`gunicorn --keyfile=./new/cod-avatar.com.key --certfile=./new/cod-avatar.com.crt -k uvicorn.workers.UvicornWorker server:app`
+
+Then start a proxy like burp in 8080
+
+Run the application:
+
+`python client3-starlette.py <proxy-port>`
+
